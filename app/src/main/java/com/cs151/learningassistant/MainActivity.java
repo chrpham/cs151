@@ -1,16 +1,26 @@
 package com.cs151.learningassistant;
 
+import android.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class SubjectListActivity extends AppCompatActivity {
+import com.cs151.learningassistant.Fragments.SubjectListFragment;
+
+
+public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_subject_list);
+        setContentView(R.layout.activity_main);
+
+        // Set an instance of a subject list fragment in the frame layout
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        ft.replace(R.id.main_frame_layout, new SubjectListFragment());
+        ft.commit();
+
     }
 
     @Override
@@ -33,5 +43,20 @@ public class SubjectListActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed(){
+        if(getFragmentManager().getBackStackEntryCount() > 0){
+            getFragmentManager().popBackStackImmediate();
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    @Override
+    public void onPause(){
+        super.onPause();
+        MainApplication.Data.save();
     }
 }

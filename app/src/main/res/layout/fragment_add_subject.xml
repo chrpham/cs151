@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/add_subject_layout">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbar_add_subj"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/add_subject_toolbar"
+            android:background="@color/primary"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/expanded_toolbar_height"
+            android:transitionName="add_subject_tbar_transition"
+            app:layout_anchor="@id/add_subject_layout"
+            app:layout_scrollFlags="scroll|enterAlways"
+            app:layout_anchorGravity="top"
+            android:title="@string/add_subject">
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_centerInParent="true"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#FFFFFF"
+                android:textColorHighlight="#FFFFFF"
+                app:hintTextAppearance="@style/TextLabel">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/subject_name"
+                    android:gravity="center_horizontal"
+                    android:id="@+id/add_title_edit_text"
+                    android:textColor="#FFFFFF"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/appbar_add_subj">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/add_desription_textview"
+            android:hint="@string/description"
+            app:layout_anchor="@id/appbar_add_subj"
+            app:layout_anchorGravity="bottom"/>
+
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/confirm_subject_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:backgroundTint="@color/accent"
+        android:clickable="true"
+        android:src="@drawable/ic_check"
+        android:transitionName="add_subject_fab_transition"
+        android:layout_marginLeft="@dimen/fab_margin"
+        android:layout_marginRight="@dimen/fab_margin"
+        android:layout_below="@+id/appbar_add_subj"
+        android:layout_alignParentEnd="true"
+        android:translationY="-28dp"
+        app:rippleColor="#FFFFFFFF"/>
+
+</RelativeLayout>
