@@ -6,4 +6,7 @@
     <string name="add_subject">Add Subject</string>
     <string name="subject_name">Subject Name</string>
     <string name="description">Description</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
+    <string name="subjects">Subjects</string>
 </resources>

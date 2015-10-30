@@ -13,6 +13,14 @@ public class Subject {
         name = n;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
     public void addReminder(Reminder r) {
         mReminders.add(r);
     }

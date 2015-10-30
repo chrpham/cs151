@@ -25,7 +25,7 @@ public class SubjectListFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_subject_list, container, false);
         RecyclerView recView = (RecyclerView) rootView.findViewById(R.id.subject_list_rec_view);
         recView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recView.setAdapter(new SubjectListAdapter(MainApplication.Data.getData()));
+        recView.setAdapter(new SubjectListAdapter(MainApplication.Data.getData(), getFragmentManager()));
 
         return rootView;
     }

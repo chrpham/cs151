@@ -16,4 +16,12 @@
         <item name="android:orientation">vertical</item>
     </style>
 
+    <style name="cancel_button" parent="Widget.AppCompat.Button">
+        <item name="android:colorButtonNormal">#00FFFFFF</item>
+    </style>
+
+    <style name="confirm_button" parent="Widget.AppCompat.Button">
+        <item name="android:colorButtonNormal">@color/primary</item>
+    </style>
+    
 </resources>

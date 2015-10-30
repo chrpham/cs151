@@ -25,4 +25,13 @@
         <item name="colorControlActivated">#FFFFFF</item>
     </style>
 
+    <style name="DialogDisplay" parent="@android:style/Theme.Dialog">
+        <item name="android:windowAnimationStyle">@style/DialogAnimation</item>
+    </style>
+
+    <style name="DialogAnimation" parent="@android:style/Animation.Dialog">
+        <item name="android:windowEnterAnimation">@anim/diag_anim_in</item>
+        <item name="android:windowExitAnimation">@anim/diag_anim_out</item>
+    </style>
+
 </resources>
