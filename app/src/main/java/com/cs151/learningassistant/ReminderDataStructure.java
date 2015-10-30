@@ -53,6 +53,10 @@ public class ReminderDataStructure implements Serializable {
         Log.d(TAG, "gson.toJson: \n" + gson.toJson(this));
     }
 
+    public void notifyDataChange(){
+        updateListeners();
+    }
+
     private void updateListeners(){
         for(int i = 0; i < listeners.size(); i++) {
             listeners.get(i).onDataChange();

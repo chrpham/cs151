@@ -3,7 +3,6 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowActionBar">false</item>
-        <!-- Customize your theme here. -->
     </style>
 
     <style name="Widget.CardContent" parent="android:Widget">

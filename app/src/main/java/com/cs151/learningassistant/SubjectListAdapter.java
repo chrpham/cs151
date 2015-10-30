@@ -32,8 +32,16 @@ public class SubjectListAdapter extends RecyclerView.Adapter<SubjectCardViewHold
     }
 
     @Override
-    public void onBindViewHolder(SubjectCardViewHolder holder, int position) {
+    public void onBindViewHolder(final SubjectCardViewHolder holder, final int position) {
         final Subject subject = MainApplication.Data.getSubject(position);
+        DataChangeListener listener = new DataChangeListener() {
+            @Override
+            public void onDataChange() {
+                holder.mTitleText.setText(MainApplication.Data.getSubject(position).getName());
+                holder.mDescriptionText.setText(MainApplication.Data.getSubject(position).getDescription());
+            }
+        };
+        MainApplication.Data.attachListener(listener);
         holder.mTitleText.setText(subject.name);
         holder.mDescriptionText.setText(subject.description);
         holder.mSettingsButton.setOnClickListener(new View.OnClickListener() {

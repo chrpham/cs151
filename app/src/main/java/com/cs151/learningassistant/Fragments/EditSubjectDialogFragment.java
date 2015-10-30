@@ -1,7 +1,6 @@
 package com.cs151.learningassistant.Fragments;
 
 import android.app.Dialog;
-import android.os.Build;
 import android.os.Bundle;
 import android.app.DialogFragment;
 import android.view.LayoutInflater;
@@ -11,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.cs151.learningassistant.MainApplication;
 import com.cs151.learningassistant.R;
 import com.cs151.learningassistant.Subject;
 
@@ -25,21 +25,23 @@ public class EditSubjectDialogFragment extends DialogFragment {
     private View.OnClickListener onCancelButtonClicked;
     private View.OnClickListener onConfirmButtonClicked;
 
-    public static EditSubjectDialogFragment newInstance(Subject s) {
-        EditSubjectDialogFragment fragment = new EditSubjectDialogFragment();
+    public static EditSubjectDialogFragment newInstance(final Subject s) {
+        final EditSubjectDialogFragment fragment = new EditSubjectDialogFragment();
         fragment.title = s.getName();
         fragment.description = s.getDescription();
         fragment.onCancelButtonClicked = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(v.getContext(), "Cancel", Toast.LENGTH_SHORT).show();
+                fragment.dismiss();
             }
         };
         fragment.onConfirmButtonClicked = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //save
-                Toast.makeText(v.getContext(), "Save", Toast.LENGTH_SHORT).show();
+                s.setName(fragment.titleEditText.getText().toString());
+                s.setDescription(fragment.descriptionEditText.getText().toString());
+                MainApplication.Data.notifyDataChange();
+                fragment.dismiss();
             }
         };
         return fragment;

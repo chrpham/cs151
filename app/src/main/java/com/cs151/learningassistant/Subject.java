@@ -5,11 +5,15 @@ import com.cs151.learningassistant.Reminders.Reminder;
 import java.util.ArrayList;
 
 public class Subject {
-    protected final String name;
+    protected String name;
     protected String description;
     private ArrayList<Reminder> mReminders = new ArrayList<>();
 
     public Subject(String n) {
+        name = n;
+    }
+
+    public void setName(String n) {
         name = n;
     }
 
