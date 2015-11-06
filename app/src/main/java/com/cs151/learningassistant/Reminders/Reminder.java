@@ -1,4 +1,6 @@
 package com.cs151.learningassistant.Reminders;
 
-public interface Reminder {
+import java.io.Serializable;
+
+public interface Reminder extends Serializable {
 }

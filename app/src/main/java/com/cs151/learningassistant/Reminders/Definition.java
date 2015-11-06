@@ -1,6 +1,8 @@
 package com.cs151.learningassistant.Reminders;
 
-public class Definition implements Reminder{
+import java.io.Serializable;
+
+public class Definition implements Reminder, Serializable{
 
     final String word;
     final String definition;

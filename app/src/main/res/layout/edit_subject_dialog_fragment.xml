@@ -13,7 +13,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/subject_name"
-            android:gravity="center_horizontal"
             android:id="@+id/edit_subjname_edittext"/>
 
     </android.support.design.widget.TextInputLayout>

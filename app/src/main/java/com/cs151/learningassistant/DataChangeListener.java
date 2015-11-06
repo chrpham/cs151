@@ -1,6 +1,8 @@
 package com.cs151.learningassistant;
 
-public interface DataChangeListener {
+import java.io.Serializable;
+
+public interface DataChangeListener extends Serializable {
 
     void onDataChange();
 }

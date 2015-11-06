@@ -2,9 +2,10 @@ package com.cs151.learningassistant;
 
 import com.cs151.learningassistant.Reminders.Reminder;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Subject {
+public class Subject implements Serializable {
     protected String name;
     protected String description;
     private ArrayList<Reminder> mReminders = new ArrayList<>();

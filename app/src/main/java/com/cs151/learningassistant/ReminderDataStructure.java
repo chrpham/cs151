@@ -6,26 +6,27 @@ import android.util.Log;
 import com.google.gson.Gson;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 
 public class ReminderDataStructure implements Serializable {
-    private static final String TAG = ReminderDataStructure.class.getSimpleName();
-    private final String saveFileName = "SaveData";
-    private ArrayList<DataChangeListener> listeners;
+    private transient static final String TAG = ReminderDataStructure.class.getSimpleName();
+    private transient static final String saveFileName = "SaveData.ser";
+    private transient static File saveFile;
+    private transient ArrayList<DataChangeListener> listeners;
     private ArrayList<Subject> subjects;
+    private static volatile ReminderDataStructure instance = null;
 
-    public ReminderDataStructure(Context context){
-
-        File saveFile = new File(context.getFilesDir(), saveFileName);
-        if(saveFile.exists()) {
-            //Load the data into the subjectMap
-        } else {
-            //no data exists!
-            subjects = new ArrayList<>();
-        }
+    private ReminderDataStructure(Context context){
+        saveFile = new File(context.getFilesDir(), saveFileName);
         listeners = new ArrayList<>();
-
+        subjects = new ArrayList<>();
     }
 
     public void addSubject(Subject subject) {
@@ -49,8 +50,18 @@ public class ReminderDataStructure implements Serializable {
      * Write to JSON object containing all the reminder data
      */
     public void save(){
-        Gson gson = new Gson();
-        Log.d(TAG, "gson.toJson: \n" + gson.toJson(this));
+        try {
+            FileOutputStream fos = new FileOutputStream(saveFile);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(instance);
+            oos.close();
+            fos.close();
+            Log.v(TAG, "Data saved");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void notifyDataChange(){
@@ -61,5 +72,32 @@ public class ReminderDataStructure implements Serializable {
         for(int i = 0; i < listeners.size(); i++) {
             listeners.get(i).onDataChange();
         }
+    }
+
+    public static ReminderDataStructure getInstance(Context context){
+        Log.v(TAG, "Getting instance");
+        if(instance == null) {
+            saveFile = new File(context.getFilesDir(), saveFileName);
+            if(saveFile.exists()) {
+                try {
+                    FileInputStream fileIn = new FileInputStream(saveFile);
+                    ObjectInputStream in = new ObjectInputStream(fileIn);
+                    instance = (ReminderDataStructure) in.readObject();
+                    in.close();
+                    fileIn.close();
+                    instance.listeners = new ArrayList<>();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                instance = new ReminderDataStructure(context);
+            }
+        }
+        if(instance == null) {
+            instance = new ReminderDataStructure(context);
+        }
+        return instance;
     }
 }

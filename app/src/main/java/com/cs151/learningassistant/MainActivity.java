@@ -3,6 +3,7 @@ package com.cs151.learningassistant;
 import android.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -51,6 +52,16 @@ public class MainActivity extends AppCompatActivity {
             getFragmentManager().popBackStackImmediate();
         } else {
             super.onBackPressed();
+        }
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_VOLUME_UP || keyCode == KeyEvent.KEYCODE_VOLUME_DOWN) {
+            MainApplication.Data.save();
+            return true;
+        } else {
+            return super.onKeyDown(keyCode, event);
         }
     }
 

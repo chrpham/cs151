@@ -17,6 +17,6 @@ public class MainApplication extends Application {
          */
         Stetho.initializeWithDefaults(this);
 
-        Data = new ReminderDataStructure(this);
+        Data = ReminderDataStructure.getInstance(this);
     }
 }
