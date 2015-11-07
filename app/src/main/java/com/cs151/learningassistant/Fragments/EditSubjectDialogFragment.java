@@ -6,6 +6,7 @@ import android.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewParent;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -69,5 +70,19 @@ public class EditSubjectDialogFragment extends DialogFragment {
         final Dialog dialog = super.onCreateDialog(savedInstanceState);
         dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
         return dialog;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        int width = (int) (getResources().getDisplayMetrics().widthPixels * 0.8);
+        int height = (int) (getResources().getDisplayMetrics().heightPixels * 0.5) ;
+        getDialog().getWindow().setLayout(width, height);
     }
 }

@@ -3,8 +3,6 @@ package com.cs151.learningassistant;
 import android.content.Context;
 import android.util.Log;
 
-import com.google.gson.Gson;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
