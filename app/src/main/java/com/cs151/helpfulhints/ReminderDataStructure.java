@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class ReminderDataStructure {
     private static final String TAG = ReminderDataStructure.class.getSimpleName();
@@ -96,6 +97,28 @@ public class ReminderDataStructure {
     }
 
     public Reminder getNextNotification() {
-        return subjects.get(0).getReminder(0);
+        ArrayList<Reminder> hints = new ArrayList<>();
+        Random r = new Random(System.currentTimeMillis());
+        int numberOfReminders = 0;
+        for(int i = 0; i < subjects.size(); i++) {
+            Log.v(TAG, String.format("Subject: %s on: %b", subjects.get(i).name, subjects.get(i).on));
+            if(subjects.get(i).on) {
+                for (int j = 0; j < subjects.get(i).getData().size(); j++) {
+                    Log.v(TAG, String.format("Hint: %s on: %b", subjects.get(i).getData().get(j).mTitle, subjects.get(i).getData().get(j).on));
+                    if (subjects.get(i).getData().get(j).on) {
+                        numberOfReminders++;
+                        hints.add(subjects.get(i).getData().get(j));
+                    }
+                }
+            }
+        }
+        if(numberOfReminders > 0) {
+            int indexOfHint = r.nextInt(numberOfReminders);
+            Log.v(TAG, String.format("Displaying: %s -> %s", hints.get(indexOfHint).mTitle, hints.get(indexOfHint).mBody));
+            return hints.get(indexOfHint);
+        } else {
+            return null;
+        }
     }
+
 }

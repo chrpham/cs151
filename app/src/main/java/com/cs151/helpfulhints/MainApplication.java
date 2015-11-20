@@ -19,7 +19,7 @@ public class MainApplication extends Application {
 
         PeriodicTask periodicTask = new PeriodicTask.Builder()
             .setService(ReminderGCMTaskService.class)
-            .setPeriod(60 * 2)
+            .setPeriod(60 * 30)
             .setTag("createNotif")
             .setRequiredNetwork(Task.NETWORK_STATE_ANY)
             .setPersisted(true)
@@ -28,6 +28,6 @@ public class MainApplication extends Application {
         GcmNetworkManager.getInstance(this).cancelAllTasks(ReminderGCMTaskService.class);
 
         /** This line will schedule a period task, use cautiously */
-        //GcmNetworkManager.getInstance(this).schedule(periodicTask);
+        GcmNetworkManager.getInstance(this).schedule(periodicTask);
     }
 }

@@ -24,13 +24,15 @@ public class ReminderGCMTaskService extends GcmTaskService {
 
     private void createNotification() {
         Reminder reminder = ReminderDataStructure.getInstance(this).getNextNotification();
-        Notification.Builder builder = new Notification.Builder(this);
-        builder.setSmallIcon(R.mipmap.ic_launcher);
-        builder.setContentTitle("Test");
-        builder.setContentText("This notification is a test, sent via GCM!");
-        builder.setPriority(Notification.PRIORITY_LOW);
-        Notification notification = builder.build();
-        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        notificationManager.notify(1, notification);
+        if(reminder != null) {
+            Notification.Builder builder = new Notification.Builder(this);
+            builder.setSmallIcon(R.mipmap.ic_launcher);
+            builder.setContentTitle(reminder.getTitle());
+            builder.setContentText(reminder.getBody());
+            builder.setPriority(Notification.PRIORITY_LOW);
+            Notification notification = builder.build();
+            NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            notificationManager.notify(1, notification);
+        }
     }
 }
