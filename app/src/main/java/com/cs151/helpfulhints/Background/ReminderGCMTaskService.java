@@ -1,11 +1,13 @@
-package com.cs151.learningassistant.Background;
+package com.cs151.helpfulhints.Background;
 
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.util.Log;
 
-import com.cs151.learningassistant.R;
+import com.cs151.helpfulhints.R;
+import com.cs151.helpfulhints.ReminderDataStructure;
+import com.cs151.helpfulhints.Reminder;
 import com.google.android.gms.gcm.GcmNetworkManager;
 import com.google.android.gms.gcm.GcmTaskService;
 import com.google.android.gms.gcm.TaskParams;
@@ -21,6 +23,7 @@ public class ReminderGCMTaskService extends GcmTaskService {
     }
 
     private void createNotification() {
+        Reminder reminder = ReminderDataStructure.getInstance(this).getNextNotification();
         Notification.Builder builder = new Notification.Builder(this);
         builder.setSmallIcon(R.mipmap.ic_launcher);
         builder.setContentTitle("Test");

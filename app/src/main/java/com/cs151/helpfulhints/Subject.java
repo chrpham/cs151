@@ -1,6 +1,4 @@
-package com.cs151.learningassistant;
-
-import com.cs151.learningassistant.Reminders.Reminder;
+package com.cs151.helpfulhints;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -8,7 +6,9 @@ import java.util.ArrayList;
 public class Subject implements Serializable {
     protected String name;
     protected String description;
+    protected boolean on;
     private ArrayList<Reminder> mReminders = new ArrayList<>();
+    private static final long serialVersionUID = 1L;
 
     public Subject(String n) {
         name = n;
@@ -43,5 +43,35 @@ public class Subject implements Serializable {
 
     public void setDescription(String d) {
         description = d;
+    }
+
+    public Reminder getReminder(int i) {
+        return mReminders.get(i);
+    }
+
+    public void turnOn(boolean on) {
+        this.on = on;
+    }
+
+    public int getReminderCount(){
+        return mReminders.size();
+    }
+
+    public ArrayList<Reminder> getData(){
+        return mReminders;
+    }
+
+    @Override
+    public boolean equals(Object subject) {
+        if(subject instanceof Subject) {
+            if(((Subject)subject).on == this.on
+                && ((Subject)subject).name.equals(this.name)
+                && ((Subject)subject).description.equals(this.description)
+                && ((Subject)subject).mReminders.equals(this.mReminders)) {
+
+                return true;
+            }
+        }
+        return false;
     }
 }

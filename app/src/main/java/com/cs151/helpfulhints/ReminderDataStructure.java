@@ -1,23 +1,23 @@
-package com.cs151.learningassistant;
+package com.cs151.helpfulhints;
 
 import android.content.Context;
 import android.util.Log;
 
+import com.cs151.helpfulhints.Callbacks.DataChangeListener;
+
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.Serializable;
 import java.util.ArrayList;
 
-public class ReminderDataStructure implements Serializable {
-    private transient static final String TAG = ReminderDataStructure.class.getSimpleName();
-    private transient static final String saveFileName = "SaveData.ser";
-    private transient static File saveFile;
-    private transient ArrayList<DataChangeListener> listeners;
+public class ReminderDataStructure {
+    private static final String TAG = ReminderDataStructure.class.getSimpleName();
+    private static final String saveFileName = "SaveData.ser";
+    private static File saveFile;
+    private ArrayList<DataChangeListener> listeners;
     private ArrayList<Subject> subjects;
     private static volatile ReminderDataStructure instance = null;
 
@@ -41,7 +41,7 @@ public class ReminderDataStructure implements Serializable {
     }
 
     public ArrayList<Subject> getData(){
-        return (ArrayList<Subject>) subjects.clone();
+        return subjects;
     }
 
     /**
@@ -51,12 +51,10 @@ public class ReminderDataStructure implements Serializable {
         try {
             FileOutputStream fos = new FileOutputStream(saveFile);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
-            oos.writeObject(instance);
+            oos.writeObject(subjects);
             oos.close();
             fos.close();
             Log.v(TAG, "Data saved");
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -72,30 +70,32 @@ public class ReminderDataStructure implements Serializable {
         }
     }
 
-    public static ReminderDataStructure getInstance(Context context){
+    public static synchronized ReminderDataStructure getInstance(Context context){
         Log.v(TAG, "Getting instance");
         if(instance == null) {
+            instance = new ReminderDataStructure(context);
             saveFile = new File(context.getFilesDir(), saveFileName);
-            if(saveFile.exists()) {
+            if (saveFile.exists()) {
                 try {
                     FileInputStream fileIn = new FileInputStream(saveFile);
                     ObjectInputStream in = new ObjectInputStream(fileIn);
-                    instance = (ReminderDataStructure) in.readObject();
+                    instance.subjects = (ArrayList<Subject>) in.readObject();
                     in.close();
                     fileIn.close();
-                    instance.listeners = new ArrayList<>();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (ClassNotFoundException e) {
+                } catch (IOException | ClassNotFoundException e) {
                     e.printStackTrace();
                 }
-            } else {
-                instance = new ReminderDataStructure(context);
             }
         }
-        if(instance == null) {
-            instance = new ReminderDataStructure(context);
-        }
         return instance;
+    }
+
+    public void addReminder(int subjectIndex, Reminder r) {
+        subjects.get(subjectIndex).addReminder(r);
+        updateListeners();
+    }
+
+    public Reminder getNextNotification() {
+        return subjects.get(0).getReminder(0);
     }
 }

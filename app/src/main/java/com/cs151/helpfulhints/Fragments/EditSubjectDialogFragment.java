@@ -1,19 +1,18 @@
-package com.cs151.learningassistant.Fragments;
+package com.cs151.helpfulhints.Fragments;
 
 import android.app.Dialog;
-import android.os.Bundle;
 import android.app.DialogFragment;
+import android.os.Bundle;
+import android.support.design.widget.TextInputLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewParent;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
-import com.cs151.learningassistant.MainApplication;
-import com.cs151.learningassistant.R;
-import com.cs151.learningassistant.Subject;
+import com.cs151.helpfulhints.MainApplication;
+import com.cs151.helpfulhints.R;
+import com.cs151.helpfulhints.Subject;
 
 public class EditSubjectDialogFragment extends DialogFragment {
 
@@ -23,6 +22,8 @@ public class EditSubjectDialogFragment extends DialogFragment {
     private Button confirmEdit;
     private String title;
     private String description;
+    private TextInputLayout titleLayout;
+    private TextInputLayout contentLayout;
     private View.OnClickListener onCancelButtonClicked;
     private View.OnClickListener onConfirmButtonClicked;
 
@@ -52,6 +53,10 @@ public class EditSubjectDialogFragment extends DialogFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.edit_subject_dialog_fragment, container, false);
+        titleLayout = (TextInputLayout) v.findViewById(R.id.title_layout);
+        titleLayout.setHint("Subject Name");
+        contentLayout = (TextInputLayout) v.findViewById(R.id.edit_desription_layout);
+        contentLayout.setHint("Subject Description");
         titleEditText = (EditText) v.findViewById(R.id.edit_subjname_edittext);
         descriptionEditText = (EditText) v.findViewById(R.id.edit_desription_edittext);
         cancelEdit = (Button) v.findViewById(R.id.cancel_edit_subject);

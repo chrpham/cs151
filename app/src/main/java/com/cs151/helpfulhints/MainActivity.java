@@ -1,16 +1,16 @@
-package com.cs151.learningassistant;
+package com.cs151.helpfulhints;
 
 import android.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.cs151.learningassistant.Fragments.SubjectListFragment;
+import com.cs151.helpfulhints.Fragments.SubjectListFragment;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,7 +19,8 @@ public class MainActivity extends AppCompatActivity {
 
         // Set an instance of a subject list fragment in the frame layout
         FragmentTransaction ft = getFragmentManager().beginTransaction();
-        ft.replace(R.id.main_frame_layout, new SubjectListFragment());
+        SubjectListFragment subjectList = new SubjectListFragment();
+        ft.replace(R.id.main_frame_layout, subjectList);
         ft.commit();
 
     }
@@ -57,12 +58,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_VOLUME_UP || keyCode == KeyEvent.KEYCODE_VOLUME_DOWN) {
-            MainApplication.Data.save();
-            return true;
-        } else {
-            return super.onKeyDown(keyCode, event);
-        }
+        return super.onKeyDown(keyCode, event);
     }
 
     @Override

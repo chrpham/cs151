@@ -5,7 +5,7 @@
         <item name="android:windowActionBar">false</item>
         <item name="android:windowContentTransitions">true</item>
         <item name="android:statusBarColor">@color/primaryDark</item>
-        <!-- Customize your theme here. -->
+        <item name="android:colorPrimary">@color/primary</item>
     </style>
 
     <style name="Widget.CardContent" parent="android:Widget">

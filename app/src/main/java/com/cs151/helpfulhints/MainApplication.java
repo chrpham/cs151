@@ -1,8 +1,8 @@
-package com.cs151.learningassistant;
+package com.cs151.helpfulhints;
 
 import android.app.Application;
 
-import com.cs151.learningassistant.Background.ReminderGCMTaskService;
+import com.cs151.helpfulhints.Background.ReminderGCMTaskService;
 import com.google.android.gms.gcm.GcmNetworkManager;
 import com.google.android.gms.gcm.PeriodicTask;
 import com.google.android.gms.gcm.Task;

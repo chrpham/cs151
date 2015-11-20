@@ -13,7 +13,6 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/subject_name"
             android:id="@+id/edit_subjname_edittext"/>
 
     </android.support.design.widget.TextInputLayout>
@@ -22,7 +21,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/title_layout"
-        android:id="@+id/button">
+        android:id="@+id/edit_desription_layout"
+        android:layout_above="@+id/linearLayout">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/edit_desription_edittext"
+            android:layout_above="@+id/linearLayout"
+            android:layout_alignParentEnd="true"
+            android:layout_alignTop="@+id/button"/>
 
     </android.support.design.widget.TextInputLayout>
 
@@ -51,14 +59,5 @@
             style="?android:attr/borderlessButtonStyle"/>
 
     </LinearLayout>
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/edit_desription_edittext"
-        android:hint="@string/description"
-        android:layout_above="@+id/linearLayout"
-        android:layout_alignParentEnd="true"
-        android:layout_alignTop="@+id/button"/>
 
 </RelativeLayout>
