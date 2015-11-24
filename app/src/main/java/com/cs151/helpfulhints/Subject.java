@@ -46,7 +46,11 @@ public class Subject implements Serializable {
     }
 
     public Reminder getReminder(int i) {
-        return mReminders.get(i);
+        if(mReminders.size() > 0) {
+            return mReminders.get(i);
+        } else {
+            return null;
+        }
     }
 
     public void turnOn(boolean on) {

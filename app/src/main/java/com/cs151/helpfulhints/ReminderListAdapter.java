@@ -40,8 +40,11 @@ public class ReminderListAdapter extends RecyclerView.Adapter<ReminderListViewHo
         DataChangeListener listener = new DataChangeListener() {
             @Override
             public void onDataChange() {
-                holder.mTitleText.setText(MainApplication.Data.getSubject(subjectIndex).getReminder(position).mTitle);
-                holder.mDescriptionText.setText(MainApplication.Data.getSubject(subjectIndex).getReminder(position).mBody);
+                Reminder r = MainApplication.Data.getSubject(subjectIndex).getReminder(position);
+                if(r != null) {
+                    holder.mTitleText.setText(r.mTitle);
+                    holder.mDescriptionText.setText(r.mBody);
+                }
             }
         };
         MainApplication.Data.attachListener(listener);
