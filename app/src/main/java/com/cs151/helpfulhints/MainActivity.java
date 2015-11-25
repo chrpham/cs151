@@ -1,6 +1,7 @@
 package com.cs151.helpfulhints;
 
 import android.app.FragmentTransaction;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -41,11 +42,26 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 prefs.edit().putBoolean(MainApplication.MASTER_TOGGLE_PREF, isChecked).commit();
-                if(isChecked) {
+                if (isChecked) {
                     MainApplication.scheduleTask(buttonView.getContext());
                 } else {
                     GcmNetworkManager.getInstance(buttonView.getContext()).cancelTask(MainApplication.NOTIF_TASK_TAG, ReminderGCMTaskService.class);
                 }
+            }
+        });
+        masterToggle.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+                builder.setMessage("This is a master switch which turns on or off all hint notifications");
+                builder.setNeutralButton("Okay", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                builder.create().show();
+                return true;
             }
         });
 
