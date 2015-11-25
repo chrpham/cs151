@@ -15,7 +15,9 @@ public class MainApplication extends Application {
 
     public static final String NOTIF_INTERVAL_PREF = "com.cs151.helpfulhints.notif_interval_pref";
     public static final int DEFAULT_NOTIF_INTERVAL = 30;
-    private static final String NOTIF_TASK_TAG = "com.cs151.helpfulhints.notif_task";
+    public static final String NOTIF_TASK_TAG = "com.cs151.helpfulhints.notif_task";
+
+    public static final String MASTER_TOGGLE_PREF = "com.cs151.helpfulhints.master_toggle_pref";
 
     public static ReminderDataStructure Data;
 
@@ -28,7 +30,7 @@ public class MainApplication extends Application {
         scheduleTask(this);
     }
 
-    private static void scheduleTask(Context context) {
+    protected static void scheduleTask(Context context) {
         GcmNetworkManager.getInstance(context).cancelTask(NOTIF_TASK_TAG, ReminderGCMTaskService.class);
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);

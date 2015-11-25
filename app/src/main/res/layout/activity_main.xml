@@ -15,6 +15,23 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize">
 
+            <android.support.v7.widget.SwitchCompat
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/master_toggle"
+                android:layout_gravity="end"
+                android:theme="@style/MasterSwitchTheme"
+                android:padding="5dp"/>
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_alarm_30dp"
+                android:layout_gravity="end"
+                android:background="#00FFFFFF"
+                android:padding="5dp"
+                android:id="@+id/alarm_interval_time"/>
+
         </android.support.v7.widget.Toolbar>
 
         <FrameLayout

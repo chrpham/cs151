@@ -2,9 +2,5 @@
       xmlns:app="http://schemas.android.com/apk/res-auto"
       xmlns:tools="http://schemas.android.com/tools"
       tools:context=".SubjectListActivity">
-    <item android:id="@+id/action_reminder_delay"
-          android:orderInCategory="100"
-          app:showAsAction="always"
-          android:icon="@drawable/ic_alarm_30dp"
-          android:title="@string/interval"/>
+
 </menu>
