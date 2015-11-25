@@ -4,6 +4,7 @@ import android.app.Notification;
 import android.app.NotificationManager;
 import android.content.Context;
 
+import com.cs151.helpfulhints.MainApplication;
 import com.cs151.helpfulhints.R;
 import com.cs151.helpfulhints.Reminder;
 import com.cs151.helpfulhints.ReminderDataStructure;
@@ -14,7 +15,7 @@ import com.google.android.gms.gcm.TaskParams;
 public class ReminderGCMTaskService extends GcmTaskService {
     @Override
     public int onRunTask(TaskParams taskParams) {
-        if(taskParams.getTag().equals("createNotif")) {
+        if(taskParams.getTag().equals(MainApplication.NOTIF_TASK_TAG)) {
             createNotification();
         }
         return GcmNetworkManager.RESULT_SUCCESS;

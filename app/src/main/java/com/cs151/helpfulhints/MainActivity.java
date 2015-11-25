@@ -1,6 +1,7 @@
 package com.cs151.helpfulhints;
 
 import android.app.FragmentTransaction;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -10,6 +11,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SwitchCompat;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
@@ -17,9 +19,7 @@ import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.NumberPicker;
 
-import com.cs151.helpfulhints.Background.ReminderGCMTaskService;
 import com.cs151.helpfulhints.Fragments.SubjectListFragment;
-import com.google.android.gms.gcm.GcmNetworkManager;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -42,11 +42,7 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 prefs.edit().putBoolean(MainApplication.MASTER_TOGGLE_PREF, isChecked).commit();
-                if (isChecked) {
-                    MainApplication.scheduleTask(buttonView.getContext());
-                } else {
-                    GcmNetworkManager.getInstance(buttonView.getContext()).cancelTask(MainApplication.NOTIF_TASK_TAG, ReminderGCMTaskService.class);
-                }
+                MainApplication.scheduleTask(buttonView.getContext());
             }
         });
         masterToggle.setOnLongClickListener(new View.OnLongClickListener() {
@@ -94,17 +90,12 @@ public class MainActivity extends AppCompatActivity{
                         if(notifIntervalDialog != null && notifIntervalDialog.isShowing()) {
                             preferences.edit().putInt(
                                 MainApplication.NOTIF_INTERVAL_PREF, picker.getValue()).commit();
-                            Class m = MainApplication.class;
-                            Method[] methods = m.getMethods();
-                            for (int i = 0; i < methods.length; i++) {
-                                if(methods[i].getName().equals("scheduleTask")) {
-                                    try {
-                                        methods[i].invoke(null, v.getContext());
-                                    } catch (IllegalAccessException | InvocationTargetException e) {
-                                        e.printStackTrace();
-                                    }
-                                    break;
-                                }
+                            try {
+                                Method method = MainApplication.class.getDeclaredMethod("scheduleTask", Context.class);
+                                Log.v("MainActivity", "Invoking scheduleTask");
+                                method.invoke(null, v.getContext());
+                            } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
+                                e.printStackTrace();
                             }
                             notifIntervalDialog.dismiss();
                         }

@@ -31,21 +31,25 @@ public class MainApplication extends Application {
     }
 
     protected static void scheduleTask(Context context) {
-        GcmNetworkManager.getInstance(context).cancelTask(NOTIF_TASK_TAG, ReminderGCMTaskService.class);
+        GcmNetworkManager.getInstance(context).cancelTask(NOTIF_TASK_TAG ,ReminderGCMTaskService.class);
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         int interval = prefs.getInt(NOTIF_INTERVAL_PREF, DEFAULT_NOTIF_INTERVAL);
-        Log.v("MainApp", "Setting notif interval to: " + interval);
-        PeriodicTask periodicTask = new PeriodicTask.Builder()
-            .setService(ReminderGCMTaskService.class)
-            .setPeriod(interval * 60)
-            .setTag(NOTIF_TASK_TAG)
-            .setRequiredNetwork(Task.NETWORK_STATE_ANY)
-            .setPersisted(true)
-            .setRequiresCharging(false)
-            .build();
+        boolean notifsEnabled = prefs.getBoolean(MASTER_TOGGLE_PREF, true);
+        Log.v("MainApp", "Notifs Enabled: " + notifsEnabled);
+        if(notifsEnabled) {
+            Log.v("MainApp", "Setting notif interval to: " + interval);
+            PeriodicTask periodicTask = new PeriodicTask.Builder()
+                .setService(ReminderGCMTaskService.class)
+                .setPeriod(interval * 60)
+                .setTag(NOTIF_TASK_TAG)
+                .setRequiredNetwork(Task.NETWORK_STATE_ANY)
+                .setPersisted(true)
+                .setRequiresCharging(false)
+                .build();
 
-        /** This line will schedule a period task, use cautiously */
-        GcmNetworkManager.getInstance(context).schedule(periodicTask);
+            /** This line will schedule a period task, use cautiously */
+            GcmNetworkManager.getInstance(context).schedule(periodicTask);
+        }
     }
 }
