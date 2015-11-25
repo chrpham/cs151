@@ -3,11 +3,10 @@ package com.cs151.helpfulhints.Background;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.content.Context;
-import android.util.Log;
 
 import com.cs151.helpfulhints.R;
-import com.cs151.helpfulhints.ReminderDataStructure;
 import com.cs151.helpfulhints.Reminder;
+import com.cs151.helpfulhints.ReminderDataStructure;
 import com.google.android.gms.gcm.GcmNetworkManager;
 import com.google.android.gms.gcm.GcmTaskService;
 import com.google.android.gms.gcm.TaskParams;
@@ -15,7 +14,6 @@ import com.google.android.gms.gcm.TaskParams;
 public class ReminderGCMTaskService extends GcmTaskService {
     @Override
     public int onRunTask(TaskParams taskParams) {
-        Log.d("ReminderGCMTaskService", taskParams.getTag());
         if(taskParams.getTag().equals("createNotif")) {
             createNotification();
         }

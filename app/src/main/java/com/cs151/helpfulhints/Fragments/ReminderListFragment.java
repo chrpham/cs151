@@ -5,13 +5,14 @@ import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.cs151.helpfulhints.Callbacks.DataChangeListener;
 import com.cs151.helpfulhints.Helpers.SimpleItemTouchHelperCallback;
@@ -45,8 +46,6 @@ public class ReminderListFragment extends Fragment {
         recView.setLayoutManager(new LinearLayoutManager(getActivity()));
         final ReminderListAdapter adapter = new ReminderListAdapter(subjectIndex, getFragmentManager());
         recView.setAdapter(adapter);
-        TextView titleBar = (TextView) rootView.findViewById(R.id.subject_name_title_view);
-        titleBar.setText(MainApplication.Data.getSubject(subjectIndex).getName());
 
         final FloatingActionButton addSubjectButton = (FloatingActionButton) rootView.findViewById(R.id.add_reminder_button);
         addSubjectButton.setOnClickListener(new View.OnClickListener() {
@@ -80,7 +79,12 @@ public class ReminderListFragment extends Fragment {
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState){
-
+        if(view.getContext() instanceof AppCompatActivity) {
+            ActionBar bar = ((AppCompatActivity) view.getContext()).getSupportActionBar();
+            if(bar != null) {
+                bar.setTitle(MainApplication.Data.getSubject(subjectIndex).getName());
+            }
+        }
     }
 
 }

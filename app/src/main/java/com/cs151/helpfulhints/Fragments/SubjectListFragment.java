@@ -5,6 +5,8 @@ import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
@@ -66,6 +68,13 @@ public class SubjectListFragment extends Fragment implements SubjectClickListene
                 addSubj.show(ft, "addSubjectFragment");
             }
         });
+
+        if(view.getContext() instanceof AppCompatActivity) {
+            ActionBar bar = ((AppCompatActivity) view.getContext()).getSupportActionBar();
+            if(bar != null) {
+                bar.setTitle("Subjects");
+            }
+        }
 
     }
 

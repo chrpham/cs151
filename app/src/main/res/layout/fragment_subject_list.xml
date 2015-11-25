@@ -8,33 +8,6 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="false">
 
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/subject_list_appbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/subject_list_toolbar"
-            android:background="@color/primary"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-            android:transitionName="add_subject_tbar_transition"
-            app:layout_anchor="@id/subject_list_coord_layout"
-            app:layout_anchorGravity="top"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:text="@string/subjects"
-                android:textColor="#FFFFFFFF"/>
-
-        </android.support.v7.widget.Toolbar>
-
-    </android.support.design.widget.AppBarLayout>
-
     <android.support.v7.widget.RecyclerView
         android:id="@+id/subject_list_rec_view"
         android:layout_width="match_parent"
@@ -53,7 +26,6 @@
         android:clickable="true"
         app:backgroundTint="@color/accent"
         android:src="@drawable/ic_add_24dp"
-        android:transitionName="add_subject_fab_transition"
         app:layout_behavior="com.cs151.helpfulhints.ScrollAwareFABBehavior"
         app:rippleColor="@color/primary"/>
 

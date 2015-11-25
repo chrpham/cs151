@@ -10,4 +10,7 @@
     <string name="save">Save</string>
     <string name="subjects">Subjects</string>
     <string name="interval">Interval</string>
+    <string name="notif_interval">Notification Interval</string>
+    <string name="interval_explanation">Set the number of minutes you would like between each notification</string>
+    <string name="confirm">Confirm</string>
 </resources>
