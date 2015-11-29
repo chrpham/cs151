@@ -3,7 +3,8 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowActionBar">false</item>
-        <!-- Customize your theme here. -->
+        <item name="android:color">@color/primary</item>
+
     </style>
 
     <style name="Widget.CardContent" parent="android:Widget">
@@ -23,6 +24,23 @@
         <item name="colorAccent">#FFFFFF</item>
         <item name="colorControlNormal">#FFFFFF</item>
         <item name="colorControlActivated">#FFFFFF</item>
+    </style>
+
+    <style name="DialogDisplay" parent="@android:style/Theme.Dialog">
+        <item name="android:windowAnimationStyle">@style/DialogAnimation</item>
+    </style>
+
+    <style name="DialogAnimation" parent="@android:style/Animation.Dialog">
+        <item name="android:windowEnterAnimation">@anim/diag_anim_in</item>
+        <item name="android:windowExitAnimation">@anim/diag_anim_out</item>
+    </style>
+
+    <style name="SwitchTheme">
+        <item name="colorControlActivated">@color/primary</item>
+    </style>
+
+    <style name="MasterSwitchTheme">
+        <item name="colorControlActivated">@color/accent</item>
     </style>
 
 </resources>

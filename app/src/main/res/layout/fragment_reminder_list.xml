@@ -3,13 +3,13 @@
 <android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/subject_list_coord_layout"
+    android:id="@+id/reminder_list_coord_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="false">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/subject_list_rec_view"
+        android:id="@+id/reminder_list_rec_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
@@ -17,10 +17,10 @@
     </android.support.v7.widget.RecyclerView>
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/add_subject_button"
+        android:id="@+id/add_reminder_button"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        app:layout_anchor="@id/subject_list_coord_layout"
+        app:layout_anchor="@id/reminder_list_coord_layout"
         app:layout_anchorGravity="bottom|right|end"
         android:layout_margin="@dimen/fab_margin"
         android:clickable="true"

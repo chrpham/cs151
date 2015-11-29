@@ -7,24 +7,48 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     card_view:cardCornerRadius="2dp"
-    android:layout_margin="2dp">
+    android:layout_margin="5dp">
 
-    <android.support.percent.PercentRelativeLayout
+    <RelativeLayout
         android:layout_height="match_parent"
-        android:layout_width="match_parent">
+        android:layout_width="match_parent"
+        android:padding="10dp">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/subject_title_text"
-            android:layout_centerHorizontal="true"/>
+            android:textAlignment="center"
+            android:layout_marginBottom="10dp"
+            android:textSize="25sp"
+            android:gravity="center_horizontal"/>
 
-        <TextView
+        <android.support.v7.widget.SwitchCompat
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/subject_description_text"
-            android:layout_below="@id/subject_title_text"/>
+            android:id="@+id/subject_toggle_switch"
+            android:theme="@style/SwitchTheme"
+            android:layout_alignParentEnd="true"/>
 
-    </android.support.percent.PercentRelativeLayout>
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/edit_subject_button"
+            android:background="#00FFFFFF"
+            android:src="@drawable/ic_settings_24dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignEnd="@+id/subject_toggle_switch"
+            android:layout_alignStart="@+id/subject_toggle_switch"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/subject_description_text"
+            android:layout_below="@id/subject_title_text"
+            android:layout_toLeftOf="@id/edit_subject_button"
+            android:layout_alignParentStart="true"/>
+
+    </RelativeLayout>
 
 </android.support.v7.widget.CardView>

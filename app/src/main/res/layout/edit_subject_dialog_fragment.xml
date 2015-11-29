@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:padding="16dp"
-                android:orientation="vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+              android:padding="16dp"
+              android:orientation="vertical"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content">
 
     <android.support.design.widget.TextInputLayout
         android:layout_height="wrap_content"
@@ -13,7 +13,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/add_subjname_edittext"/>
+            android:id="@+id/edit_subjname_edittext"/>
 
     </android.support.design.widget.TextInputLayout>
 
@@ -27,7 +27,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/add_desription_edittext"
+            android:id="@+id/edit_desription_edittext"
             android:layout_above="@+id/linearLayout"
             android:layout_alignParentEnd="true"
             android:layout_alignTop="@+id/button"/>
@@ -45,7 +45,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/cancel_new_subject"
+            android:id="@+id/cancel_edit_subject"
             style="?android:attr/borderlessButtonStyle"
             android:text="@string/cancel"
             android:textColor="#FF666666"/>
@@ -53,7 +53,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/save_new_subject"
+            android:id="@+id/save_edit_subject"
             android:text="@string/save"
             android:textColor="@color/primary"
             style="?android:attr/borderlessButtonStyle"/>

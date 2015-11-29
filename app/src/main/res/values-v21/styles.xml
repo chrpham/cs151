@@ -5,7 +5,7 @@
         <item name="android:windowActionBar">false</item>
         <item name="android:windowContentTransitions">true</item>
         <item name="android:statusBarColor">@color/primaryDark</item>
-        <!-- Customize your theme here. -->
+        <item name="android:colorPrimary">@color/primary</item>
     </style>
 
     <style name="Widget.CardContent" parent="android:Widget">
@@ -16,4 +16,12 @@
         <item name="android:orientation">vertical</item>
     </style>
 
+    <style name="cancel_button" parent="Widget.AppCompat.Button">
+        <item name="android:colorButtonNormal">#00FFFFFF</item>
+    </style>
+
+    <style name="confirm_button" parent="Widget.AppCompat.Button">
+        <item name="android:colorButtonNormal">@color/primary</item>
+    </style>
+    
 </resources>

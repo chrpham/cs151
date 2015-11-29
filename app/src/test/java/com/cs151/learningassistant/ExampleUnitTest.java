@@ -1,4 +1,4 @@
-package com.cs151.learningassistant;
+package com.cs151.helpfulhints;
 
 import org.junit.Test;
 
